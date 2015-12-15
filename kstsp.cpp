@@ -26,10 +26,11 @@ KsTSP::~KsTSP(){
 void KsTSP::PrintInfo(){
 	printf("---info-------------------\n");
 	printf("cityNum:%d\n", this->cityNum);
-	printf("cost limit: %d\n", this->costLmt);
 	for (int i = 0; i < cityNum; i++){
 		printf("x:%3d  y:%3d  val:%3d\n", cities[i].GetX(), cities[i].GetY(), cities[i].GetVal());
 	}
+	printf("cost limit: %d\n", this->costLmt);
+	printf("average of costs: %6.3f\n", costAvrg);
 	printf("--------------------------\n");
 }
 int KsTSP::GetTblID(int c1, int c2){
@@ -44,15 +45,17 @@ int KsTSP::GetCost(int c1, int c2){
 void KsTSP::SetCostTbl(){
 	double dx, dy, cost;
 	int idx;
+	costAvrg = 0;
 	for (int j = 0; j < this->cityNum; j++){
 		for (int i = 0; i <= j; i++){
 			dx = cities[i].GetX() - cities[j].GetX();
 			dy = cities[i].GetY() - cities[j].GetY();
 			idx = GetTblID(i, j);
 			cost = sqrt(dx*dx + dy*dy);
-			costTable[idx] = cost;
+			costAvrg += costTable[idx] = cost;
 		}
 	}
+	costAvrg /= cityNum*(cityNum - 1) / 2.0;
 }
 
 int KsTSP::SumOfValue(int isIncludedFlgAry[]){

@@ -4,14 +4,15 @@
 #include "city.h"
 #define ENDOFROUTE -1
 
-#define XXX 0
 
 class KsTSP{
 private:
 	int cityNum;
 	City *cities;
 	int costLmt;
-	double *costTable;
+	double *costTable, costAvrg;
+	// costavrgを参照することでなめる方向を変えて高速化しようと思ったけど
+	// 下からなめても意味がないことに気付いたのでcostAvrgの使い道は保留
 public:
 	KsTSP(){}
 	KsTSP(int n); // 都市数だけ決めて中身はランダム
