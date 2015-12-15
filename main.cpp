@@ -6,7 +6,7 @@
 int main(void){
 	int **candidates; // ‰ðŒó•â‚Æ‚È‚éŒo˜H‚Ì”z—ñ
 	int candNum;
-	KsTSP kstsp(5);
+	KsTSP kstsp(4);
 	int left, right, mid, ansID;
 
 	kstsp.PrintInfo();
